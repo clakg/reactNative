@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
+import { View, Text, FlatList, Button, TextInput } from 'react-native';
 import MovieItem from '../components/MovieItem';
 
 class Home extends Component {
@@ -7,7 +7,9 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movies: []
+            movies: [],
+            title: '',
+            year: new Date().getFullYear()
         };
     }
 
@@ -29,12 +31,20 @@ class Home extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
                 <Text>Home</Text>
-                <FlatList data={this.state.movies}
-                          renderItem={({item}) => <MovieItem movie={item}/>}
-                          keyExtractor={(item, index) => index.toString()}
-                />
+                <View style={{ height: 250 }}>
+                    <FlatList data={this.state.movies}
+                              renderItem={({item}) => <MovieItem movie={item}/>}
+                              keyExtractor={(item, index) => index.toString()}
+                    />
+                </View>
+                <TextInput onChangeText={text => this.setState({ title: text })}
+                           value={this.state.title}
+                           placeholder='Titre du film'/>
+                <TextInput onChangeText={text => this.setState({ year: text })}
+                           value={this.state.year.toString()}
+                           keyboardType='web-search'/>
                 <Button onPress={() => this.addMovie()} title='Ajouter un film'/>
             </View>
         );
