@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Button } from 'react-native';
 import MovieItem from '../components/MovieItem';
 
 class Home extends Component {
@@ -20,6 +20,13 @@ class Home extends Component {
         });
     }
 
+    addMovie() {
+        const movie =  { title: 'Terminator 6', year: 2019 };
+        this.setState({
+            movies: [...this.state.movies, movie]
+        });
+    }
+
     render() {
         return (
             <View>
@@ -28,6 +35,7 @@ class Home extends Component {
                           renderItem={({item}) => <MovieItem movie={item}/>}
                           keyExtractor={(item, index) => index.toString()}
                 />
+                <Button onPress={() => this.addMovie()} title='Ajouter un film'/>
             </View>
         );
     }
