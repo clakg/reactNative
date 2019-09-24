@@ -1,13 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import Constants from 'expo-constants';
+import Home from "./screens/Home";
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={{color: 'red'}}>{process.env.API_URL}</Text>
-      <Text>Hello World</Text>
+
+      <Home/>
+
     </View>
   );
 }
