@@ -23,7 +23,7 @@ class Home extends Component {
     }
 
     addMovie() {
-        const movie =  { title: 'Terminator 6', year: 2019 };
+        const movie =  { title: this.state.title, year: this.state.year };
         this.setState({
             movies: [...this.state.movies, movie]
         });
@@ -44,7 +44,7 @@ class Home extends Component {
                            placeholder='Titre du film'/>
                 <TextInput onChangeText={text => this.setState({ year: text })}
                            value={this.state.year.toString()}
-                           keyboardType='web-search'/>
+                           keyboardType='numeric'/>
                 <Button onPress={() => this.addMovie()} title='Ajouter un film'/>
             </View>
         );
