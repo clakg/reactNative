@@ -10,21 +10,20 @@ class Home extends Component {
         this.state = {
             companies: [],
             name: '',
-            description: ''
+            description: '',
+            page: 1
         };
     }
-
-
 
     componentDidMount() {
         this.fetchCompanies();
     }
 
     fetchCompanies(){
-        console.log(process.env.API_URL + '/companies')
-        fetch(process.env.API_URL + '/companies') // charge la liste des companies dans le state
+        fetch(process.env.API_URL + '/companies?page=' + this.state.page) // charge la liste des companies dans le state
             .then(response => response.json())
             .then(companies => this.setState({companies: [...this.state.companies, ...companies] }))
+            //.then(companies => this.setState({companies: companies })) // chargement de 10 entreprises d'un coup sans charger le reste des entreprises
     }
 
     addCompanie() {
@@ -43,6 +42,7 @@ class Home extends Component {
                               renderItem={({item}) => <CompanieItem companie={item}/>}
                               keyExtractor={(item, index) => index.toString()}
                     />
+                    <Button onPress={() => this.setState({page: this.state.page + 1}, () => this.fetchCompanies())} title='Charger plus'/>
                 </View>
                 <TextInput onChangeText={text => this.setState({ name: text })}
                            value={this.state.name}
