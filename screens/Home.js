@@ -1,31 +1,36 @@
 import React, {Component} from 'react';
-import { View, Text, FlatList, Button, TextInput } from 'react-native';
-import MovieItem from '../components/MovieItem';
+import { View, Text, FlatList, Button, Switch } from 'react-native';
+import TextInput from "../kitui/TextInput";
+import CompanieItem from "../components/CompanieItem";
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            movies: [],
-            title: '',
-            year: new Date().getFullYear()
+            companies: [],
+            name: '',
+            description: ''
         };
     }
 
+
+
     componentDidMount() {
-        this.setState({
-            movies: [
-                { title: 'Titanic', year: 1998 },
-                { title: 'Intouchables', year: 2015 }
-            ]
-        });
+        this.fetchCompanies();
     }
 
-    addMovie() {
-        const movie =  { title: this.state.title, year: this.state.year };
+    fetchCompanies(){
+        console.log(process.env.API_URL + '/companies')
+        fetch(process.env.API_URL + '/companies') // charge la liste des companies dans le state
+            .then(response => response.json())
+            .then(companies => this.setState({companies: [...this.state.companies, ...companies] }))
+    }
+
+    addCompanie() {
+        const companie =  { name: this.state.name, description: this.state.description};
         this.setState({
-            movies: [...this.state.movies, movie]
+            companies: [...this.state.companies, companie]
         });
     }
 
@@ -34,18 +39,19 @@ class Home extends Component {
             <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
                 <Text>Home</Text>
                 <View style={{ height: 250 }}>
-                    <FlatList data={this.state.movies}
-                              renderItem={({item}) => <MovieItem movie={item}/>}
+                    <FlatList data={this.state.companies}
+                              renderItem={({item}) => <CompanieItem companie={item}/>}
                               keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
-                <TextInput onChangeText={text => this.setState({ title: text })}
-                           value={this.state.title}
-                           placeholder='Titre du film'/>
-                <TextInput onChangeText={text => this.setState({ year: text })}
-                           value={this.state.year.toString()}
-                           keyboardType='numeric'/>
-                <Button onPress={() => this.addMovie()} title='Ajouter un film'/>
+                <TextInput onChangeText={text => this.setState({ name: text })}
+                           value={this.state.name}
+                           placeholder='Nom de la compagnie'/>
+                <TextInput onChangeText={text => this.setState({ description: text })}
+                           value={this.state.description}
+                           keyboardType='default'/>
+                <Switch value={this.state.wifi} onValueChange={value => this.setState({wifi: value}) }/>
+                <Button onPress={() => this.addCompanie()} title='Ajouter une compagnie'/>
             </View>
         );
     }
