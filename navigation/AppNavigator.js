@@ -4,16 +4,18 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import Home from "../screens/Home";
 import SearchNavigator from "./SearchNavigator";
 import NewCompanie from "../screens/NewCompanie";
+import Sensors from "../screens/Sensors";
 
 
 const AppNavigator = createDrawerNavigator(
     {
         Home: Home,
         Search: SearchNavigator,
-        NewCompanie: NewCompanie
+        NewCompanie: NewCompanie,
+        Sensors: Sensors
     },
     {
-        initialRouteName: 'Home'
+        initialRouteName: 'Sensors'
     }
 );
 
