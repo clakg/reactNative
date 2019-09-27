@@ -15,7 +15,7 @@ const AppNavigator = createDrawerNavigator(
         Sensors: SensorNavigator
     },
     {
-        initialRouteName: 'Sensors'
+        initialRouteName: 'Home'
     }
 );
 
