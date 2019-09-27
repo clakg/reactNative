@@ -1,13 +1,13 @@
-import { createStackNavigator } from "react-navigation-tabs";
-import SearchScreen from "../screens/Search";
-import CompanyScreen from "../screens/Companie";
-import EditCompany from "../screens/EditCompanie";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import Accelerometer from "../screens/sensors/Accelerometer";
+import Gyroscope from "../screens/sensors/Gyroscope";
+import Location from "../screens/sensors/Location";
 
-const SearchNavigator = {
-    Search: SearchScreen,
-    Company: CompanyScreen,
-    EditCompany: EditCompany
+const SensorNavigator = {
+    Accelerometer: Accelerometer,
+    Gyroscope: Gyroscope,
+    Location: Location
 };
 
-export default createTabNavigator(SensorNavigator);
+export default createBottomTabNavigator(SensorNavigator);
 

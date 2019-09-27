@@ -4,7 +4,7 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import Home from "../screens/Home";
 import SearchNavigator from "./SearchNavigator";
 import NewCompanie from "../screens/NewCompanie";
-import Sensors from "../screens/Sensors";
+import SensorNavigator from "./SensorNavigator";
 
 
 const AppNavigator = createDrawerNavigator(
@@ -12,7 +12,7 @@ const AppNavigator = createDrawerNavigator(
         Home: Home,
         Search: SearchNavigator,
         NewCompanie: NewCompanie,
-        Sensors: Sensors
+        Sensors: SensorNavigator
     },
     {
         initialRouteName: 'Sensors'

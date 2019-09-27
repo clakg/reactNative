@@ -7,7 +7,7 @@ import SensorItem from "../components/SensorItem";
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
-class Sensors extends Component {
+class SensorsNotValide extends Component {
 
     constructor(props) {
         super(props);
@@ -69,4 +69,4 @@ class Sensors extends Component {
     }
 }
 
-export default Sensors;
+export default SensorsNotValide;
