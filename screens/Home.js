@@ -5,6 +5,10 @@ import CompanieItem from "../components/CompanieItem";
 
 class Home extends Component {
 
+    static navigationOptions = {
+        drawerLabel: 'Accueil'
+    };
+
     constructor(props) {
         super(props);
         this.state = {
