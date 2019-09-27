@@ -34,3 +34,4 @@ class NewCompanie extends Component {
 }
 
 export default NewCompanie;
+
