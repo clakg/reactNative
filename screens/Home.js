@@ -22,7 +22,9 @@ class Home extends Component {
     fetchCompanies(){
         fetch(process.env.API_URL + '/companies?page=' + this.state.page) // charge la liste des companies dans le state
             .then(response => response.json())
-            .then(companies => this.setState({companies: [...this.state.companies, ...companies] }))
+            .then(data => this.setState({ companies: [...this.state.companies, ...data.companies] }))
+
+        //.then(companies => this.setState({companies: [...this.state.companies, ...companies] }))
             //.then(companies => this.setState({companies: companies })) // chargement de 10 entreprises d'un coup sans charger le reste des entreprises
     }
 
